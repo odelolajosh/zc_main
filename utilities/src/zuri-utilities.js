@@ -106,5 +106,34 @@ export const SubscribeToChannel = (plugin_id, callback) => {
   })
 }
 
-// Anything exported from this file is importable by other in-browser modules.
-export function publicApiFunction() {}
+const CallAllApis = () => {
+  let user = JSON.parse(sessionStorage.getItem("user"))
+  const currentWorkspace = localStorage.getItem("currentWorkspace")
+  let token = sessionStorage.getItem("token")
+
+  if ((user && token) !== null) {
+    try {
+      const response = axios.get(
+        `https://api.zuri.chat/organizations/${currentWorkspace}/members/?query=${user.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      )
+      let userData = { currentWorkspace, token, ...response.data.data }
+      // console.log('getuserinfo', response.data.data)
+      // console.log(userData)
+      return userData
+    } catch (err) {
+      console.error(err)
+    }
+  } else {
+    console.warn("YOU ARE NOT LOGGED IN, PLEASE LOG IN")
+  }
+}
+
+  CallAllApis();
+
+  // Anything exported from this file is importable by other in-browser modules.
+  export function publicApiFunction() { }

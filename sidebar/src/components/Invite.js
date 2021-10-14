@@ -12,7 +12,7 @@ export default function Invite(props) {
 
   return (
     <div className={`row mt-2 ${styles.sb__item}`}>
-      {props.state.user && props.state.user[0].role === ("owner" || "admin") ? (
+      {props.state.user && props.state.user.role === ("owner" || "admin") ? (
         <div
           className={`col-12 ps-3 d-flex align-items-center ${styles.sb__col}`}
         >

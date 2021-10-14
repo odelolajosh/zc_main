@@ -117,8 +117,8 @@ const TopNavBar = ({ userProfile: { last_name, first_name } }) => {
 
   const UpdateInfo = () => {
     GetUserInfo().then(res => {
-      setUserProfileImage(res["0"].image_url)
-      setUser(res["0"])
+      setUserProfileImage(res.image_url)
+      setUser(res)
     })
   }
 
