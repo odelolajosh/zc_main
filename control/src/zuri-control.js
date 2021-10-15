@@ -216,7 +216,7 @@ const SetUpDb = () => {
   }
 }
 
-SetUpDb();
+// SetUpDb();
 
 
 export const { bootstrap, mount, unmount } = lifecycles
